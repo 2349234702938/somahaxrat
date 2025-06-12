@@ -15,7 +15,7 @@ public class FriendManager
     private List<Friend> friends = new ArrayList<Friend>();
 
     public FriendManager() {
-        super("Friends");
+        super("Homies");
     }
 
     public boolean isFriend(String name) {

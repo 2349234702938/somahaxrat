@@ -1,15 +1,15 @@
 [
   {
     "modid": "oyvey",
-    "name": "OyVey",
-    "description": "1.12.2 Anarchy PvP Client",
-    "version": "0.0.3",
+    "name": "Somahax",
+    "description": "Somahax.sex a client made by voidmatter and crystal continued by hoodjustice",
+    "version": "0.8.5",
     "mcversion": "1.12.2",
-    "logoFile": "niggahack.png",
-    "url": "https://discordapp.com/invite/WcAx3ps",
+    "logoFile": "niggahack.jpg",
+    "url": "https://www.4chan.org",
     "updateUrl": "",
     "authorList": [
-      "Alpha432"
+      "VoidMatter", "Crystal", "Continued by hoodjustice"
     ],
     "screenshots": [],
     "dependencies": []

@@ -107,7 +107,19 @@ public class InventoryUtil
         }
         return slot.get();
     }
+    public static List<Integer> getItemInventory(Item item){
+        List<Integer> ints = new ArrayList<>();
+        for (int i = 9; i < 36; i++)
+        {
+            Item target = mc.player.inventory.getStackInSlot(i).getItem();
 
+            if (item instanceof ItemBlock && ((ItemBlock) item).getBlock().equals(item)) ints.add(i);
+        }
+
+        if(ints.size() == 0) ints.add(-1);
+
+        return ints;
+    }
     public static List<Integer> findEmptySlots(boolean withXCarry) {
         ArrayList<Integer> outPut = new ArrayList<Integer>();
         for (Map.Entry<Integer, ItemStack> entry : InventoryUtil.getInventoryAndHotbarSlots().entrySet()) {
@@ -421,4 +433,3 @@ public class InventoryUtil
         }
     }
 }
-

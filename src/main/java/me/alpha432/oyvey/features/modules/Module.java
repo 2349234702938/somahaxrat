@@ -10,6 +10,7 @@ import me.alpha432.oyvey.features.command.Command;
 import me.alpha432.oyvey.features.modules.client.HUD;
 import me.alpha432.oyvey.features.setting.Bind;
 import me.alpha432.oyvey.features.setting.Setting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -29,6 +30,7 @@ public class Module
     public float offset;
     public float vOffset;
     public boolean sliding;
+    public static Minecraft mc = Minecraft.getMinecraft();
 
     public Module(String name, String description, Category category, boolean hasListener, boolean hidden, boolean alwaysListening) {
         super(name);
@@ -102,7 +104,7 @@ public class Module
         this.onToggle();
         this.onEnable();
         if (HUD.getInstance().notifyToggles.getValue().booleanValue()) {
-            TextComponentString text = new TextComponentString(OyVey.commandManager.getClientMessage() + " " + ChatFormatting.GREEN + this.getDisplayName() + " toggled on.");
+            TextComponentString text = new TextComponentString(OyVey.commandManager.getClientMessage() + " " + ChatFormatting.WHITE + this.getDisplayName() + " +");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
         if (this.isOn() && this.hasListener && !this.alwaysListening) {
@@ -116,7 +118,7 @@ public class Module
         }
         this.enabled.setValue(false);
         if (HUD.getInstance().notifyToggles.getValue().booleanValue()) {
-            TextComponentString text = new TextComponentString(OyVey.commandManager.getClientMessage() + " " + ChatFormatting.RED + this.getDisplayName() + " toggled off.");
+            TextComponentString text = new TextComponentString(OyVey.commandManager.getClientMessage() + " " + ChatFormatting.RED + this.getDisplayName() + " -");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
         this.onToggle();
@@ -139,11 +141,11 @@ public class Module
         Module module = OyVey.moduleManager.getModuleByDisplayName(name);
         Module originalModule = OyVey.moduleManager.getModuleByName(name);
         if (module == null && originalModule == null) {
-            Command.sendMessage(this.getDisplayName() + ", name: " + this.getName() + ", has been renamed to: " + name);
+            Command.sendMessage(this.getDisplayName() + ", you renamed " + this.getName() + ", to: " + name + " CRINGE. ");
             this.displayName.setValue(name);
             return;
         }
-        Command.sendMessage(ChatFormatting.RED + "A module of this name already exists.");
+        Command.sendMessage(ChatFormatting.RED + "A fucking module called " + name + " already exists, you fucking idiot.");
     }
 
     public String getDescription() {

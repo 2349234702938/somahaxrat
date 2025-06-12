@@ -108,8 +108,8 @@ reobf {
 jar {
     manifest {
         attributes(
-                'MixinConfigs': 'mixins.oyvey.json',
                 'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'MixinConfigs': 'mixins.oyvey.json',
                 'TweakOrder': 0,
                 'FMLCorePluginContainsFMLMod': 'true',
                 'FMLCorePlugin': 'me.alpha432.oyvey.mixin.OyVeyMixinLoader',

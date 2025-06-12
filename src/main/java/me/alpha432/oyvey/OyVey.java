@@ -1,6 +1,7 @@
 package me.alpha432.oyvey;
 
 import me.alpha432.oyvey.manager.*;
+import me.alpha432.oyvey.util.ShitProtection;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -8,12 +9,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-@Mod(modid = "oyvey", name = "OyVey", version = "0.0.3")
+@Mod(modid = "somahax", name = "somahax.sex", version = "0.8.5")
 public class OyVey {
-    public static final String MODID = "oyvey";
-    public static final String MODNAME = "OyVey";
-    public static final String MODVER = "0.0.3";
-    public static final Logger LOGGER = LogManager.getLogger("OyVey");
+    public static final String MODID = "somahax";
+    public static final String MODNAME = "somahax.sex";
+    public static final String MODVER = "0.8.5";
+    public static final Logger LOGGER = LogManager.getLogger("somahax.sex");
     public static CommandManager commandManager;
     public static FriendManager friendManager;
     public static ModuleManager moduleManager;
@@ -40,7 +41,7 @@ public class OyVey {
     }
 
     public static void load() {
-        LOGGER.info("\n\nLoading OyVey by Alpha432");
+        LOGGER.info("\n\nLoading somahax by RetardMatter and CrystalRetardium! Continued by hoodjustice aka getrekt21 :D");
         unloaded = false;
         if (reloadManager != null) {
             reloadManager.unload();
@@ -70,11 +71,11 @@ public class OyVey {
         LOGGER.info("EventManager loaded.");
         textManager.init(true);
         moduleManager.onLoad();
-        LOGGER.info("OyVey successfully loaded!\n");
+        LOGGER.info("somahax successfully loaded!\n");
     }
 
     public static void unload(boolean unload) {
-        LOGGER.info("\n\nUnloading OyVey by Alpha432");
+        LOGGER.info("\n\nUnloading somahax by RetardMatter and CrystalRetardium");
         if (unload) {
             reloadManager = new ReloadManager();
             reloadManager.init(commandManager != null ? commandManager.getPrefix() : ".");
@@ -95,7 +96,7 @@ public class OyVey {
         inventoryManager = null;
         moduleManager = null;
         textManager = null;
-        LOGGER.info("OyVey unloaded!\n");
+        LOGGER.info("somahax unloaded!\n");
     }
 
     public static void reload() {
@@ -115,13 +116,16 @@ public class OyVey {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        LOGGER.info("I am gona gas you kike - Alpha432");
+        LOGGER.info("Can i get ratted by downloading the src? -Somsoma1");
+
+        LOGGER.info("Can i rat a homeless mfer thru a line of code? -hoodjustice-fbgballout");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        Display.setTitle("OyVey v0.0.3");
+        ShitProtection.checkHWID();
+
+        Display.setTitle("somahax");
         OyVey.load();
     }
 }
-

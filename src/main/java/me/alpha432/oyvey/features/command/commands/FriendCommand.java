@@ -15,9 +15,9 @@ public class FriendCommand
     public void execute(String[] commands) {
         if (commands.length == 1) {
             if (OyVey.friendManager.getFriends().isEmpty()) {
-                FriendCommand.sendMessage("Friend list empty D:.");
+                FriendCommand.sendMessage("FRIENDS NOT FOUND KEK");
             } else {
-                String f = "Friends: ";
+                String f = "Homies: ";
                 for (FriendManager.Friend friend : OyVey.friendManager.getFriends()) {
                     try {
                         f = f + friend.getUsername() + ", ";
@@ -52,7 +52,7 @@ public class FriendCommand
                     return;
                 }
             }
-            FriendCommand.sendMessage("Unknown Command, try friend add/del (name)");
+            FriendCommand.sendMessage("bro, you have to use it like this: .friend add/del <name>");
         }
     }
 }

@@ -9,18 +9,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;
 import org.lwjgl.input.Mouse;
 
-public class MCF
+public class MiddleClickFriends
         extends Module {
     private boolean clicked = false;
 
-    public MCF() {
-        super("MCF", "Middleclick Friends.", Module.Category.MISC, true, false, false);
+    public MiddleClickFriends() {
+        super("MiddleClickFriends", "Middleclick To Add Friends", Module.Category.MISC, true, false, false);
     }
 
     @Override
     public void onUpdate() {
         if (Mouse.isButtonDown(2)) {
-            if (!this.clicked && MCF.mc.currentScreen == null) {
+            if (!this.clicked && MiddleClickFriends.mc.currentScreen == null) {
                 this.onClick();
             }
             this.clicked = true;
@@ -31,14 +31,14 @@ public class MCF
 
     private void onClick() {
         Entity entity;
-        RayTraceResult result = MCF.mc.objectMouseOver;
+        RayTraceResult result = MiddleClickFriends.mc.objectMouseOver;
         if (result != null && result.typeOfHit == RayTraceResult.Type.ENTITY && (entity = result.entityHit) instanceof EntityPlayer) {
             if (OyVey.friendManager.isFriend(entity.getName())) {
                 OyVey.friendManager.removeFriend(entity.getName());
                 Command.sendMessage(ChatFormatting.RED + entity.getName() + ChatFormatting.RED + " is not your homie anymore.");
             } else {
                 OyVey.friendManager.addFriend(entity.getName());
-                Command.sendMessage(ChatFormatting.AQUA + entity.getName() + ChatFormatting.AQUA + " is your homie rn.");
+                Command.sendMessage(ChatFormatting.AQUA + entity.getName() + ChatFormatting.AQUA + " is now your homie.");
             }
         }
         this.clicked = true;
