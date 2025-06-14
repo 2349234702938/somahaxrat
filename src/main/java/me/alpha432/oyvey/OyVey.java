@@ -1,7 +1,6 @@
 package me.alpha432.oyvey;
 
 import me.alpha432.oyvey.manager.*;
-import me.alpha432.oyvey.util.ShitProtection;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
