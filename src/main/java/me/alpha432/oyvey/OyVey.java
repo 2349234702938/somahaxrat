@@ -123,8 +123,6 @@ public class OyVey {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        ShitProtection.checkHWID();
-
         Display.setTitle("somahax");
         OyVey.load();
     }
