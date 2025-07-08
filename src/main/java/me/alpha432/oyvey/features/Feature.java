@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Feature
         implements Util {
-    public List<Setting> settings = new ArrayList<>();
+    public List<Setting> settings = new ArrayList<Setting>();
     public TextManager renderer = OyVey.textManager;
     private String name;
 

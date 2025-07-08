@@ -326,7 +326,7 @@ public class RenderUtil
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
-    public static void drawRect(float x, float y, float w, float h, int color) {
+    public static void drawRect(float x, float y, float w, float h, long color) {
         float alpha = (float) (color >> 24 & 0xFF) / 255.0f;
         float red = (float) (color >> 16 & 0xFF) / 255.0f;
         float green = (float) (color >> 8 & 0xFF) / 255.0f;
@@ -342,6 +342,41 @@ public class RenderUtil
         bufferbuilder.pos(w, y, 0.0).color(red, green, blue, alpha).endVertex();
         bufferbuilder.pos(x, y, 0.0).color(red, green, blue, alpha).endVertex();
         tessellator.draw();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+    }
+
+    public static void drawGradientRect(float x, float y, float w, float h, long color, long color2, boolean vertical) {
+        float alpha = (float) (color >> 24 & 0xFF) / 255.0f;
+        float red = (float) (color >> 16 & 0xFF) / 255.0f;
+        float green = (float) (color >> 8 & 0xFF) / 255.0f;
+        float blue = (float) (color & 0xFF) / 255.0f;
+        float alpha2 = (float) (color2 >> 24 & 0xFF) / 255.0f;
+        float red2 = (float) (color2 >> 16 & 0xFF) / 255.0f;
+        float green2 = (float) (color2 >> 8 & 0xFF) / 255.0f;
+        float blue2 = (float) (color2 & 0xFF) / 255.0f;
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        GlStateManager.enableBlend();
+        GlStateManager.disableTexture2D();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.shadeModel(7425);
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        if (vertical) {
+            bufferbuilder.pos(x, h, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+            bufferbuilder.pos(w, h, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+            bufferbuilder.pos(w, y, 0.0).color(red, green, blue, alpha).endVertex();
+            bufferbuilder.pos(x, y, 0.0).color(red, green, blue, alpha).endVertex();
+        } else {
+            bufferbuilder.pos(w, h, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+            bufferbuilder.pos(w, y, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+            bufferbuilder.pos(x, y, 0.0).color(red, green, blue, alpha).endVertex();
+            bufferbuilder.pos(x, h, 0.0).color(red, green, blue, alpha).endVertex();
+        }
+        tessellator.draw();
+        GlStateManager.shadeModel(7424);
+        GlStateManager.enableAlpha();
         GlStateManager.enableTexture2D();
         GlStateManager.disableBlend();
     }
@@ -1193,5 +1228,16 @@ public class RenderUtil
             RenderTesselator.drawBox(INSTANCE.getBuffer(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 1.0f, 0.5f, 1.0f, r, g, b, a, sides);
         }
     }
-}
 
+    public static void renderThroughWalls(boolean start) {
+        if (start) {
+            GL11.glEnable(GL11.GL_POLYGON_OFFSET_FILL);
+            GlStateManager.enablePolygonOffset();
+            GlStateManager.doPolygonOffset(1.0F, -10000000);
+        } else {
+            GL11.glDisable(GL11.GL_POLYGON_OFFSET_FILL);
+            GlStateManager.doPolygonOffset(1.0F, 10000000);
+            GlStateManager.disablePolygonOffset();
+        }
+    }
+}

@@ -31,78 +31,59 @@ import java.util.stream.Collectors;
 
 public class ModuleManager
         extends Feature {
-    public ArrayList<Module> modules = new ArrayList<>();
-    public List<Module> sortedModules = new ArrayList<>();
-    public List<String> sortedModulesABC = new ArrayList<>();
+    public ArrayList<Module> modules = new ArrayList();
+    public List<Module> sortedModules = new ArrayList<Module>();
+    public List<String> sortedModulesABC = new ArrayList<String>();
     public Animation animationThread;
 
     public void init() {
-        modules.add(new ClickGui());
-        modules.add(new FontMod());
-        modules.add(new ExtraTab());
-        modules.add(new HUD());
-        modules.add(new BlockHighlight());
-        modules.add(new HitMarkers());
-        modules.add(new HoleESP());
-        modules.add(new MCP());
-        modules.add(new Quiver());
-        modules.add(new Announcer());
-        modules.add(new Skeleton());
-        modules.add(new Wireframe());
-        modules.add(new Replenish());
-        modules.add(new SmallShield());
-        modules.add(new HandChams());
-        modules.add(new Trajectories());
-        modules.add(new FakePlayer());
-        modules.add(new TpsSync());
-        modules.add(new MultiTask());
-        modules.add(new LiquidInteract());
-        modules.add(new Speedmine());
-        modules.add(new ReverseStep());
-        modules.add(new InstantSpeed());
-        modules.add(new NoVoid());
-        modules.add(new NoHandShake());
-        modules.add(new BuildHeight());
-        modules.add(new ChatModifier());
-        modules.add(new MiddleClickFriends());
-        modules.add(new PearlNotify());
-        modules.add(new AutoGG());
-        modules.add(new NoFog());
-        modules.add(new ToolTips());
-        modules.add(new Tracker());
-        modules.add(new PopCounter());
-        modules.add(new Offhand());
-        modules.add(new Surround());
-        modules.add(new AutoTrap());
-        modules.add(new AutoWeb());
-        modules.add(new AutoCrystal());
-        modules.add(new OldCrystalAura());
-        modules.add(new Killaura());
-        modules.add(new Criticals());
-        modules.add(new HoleFiller());
-        modules.add(new AutoArmor());
-        modules.add(new Speed());
-        modules.add(new Step());
-        modules.add(new Flight());
-        modules.add(new Scaffold());
-        modules.add(new PacketFly());
-        modules.add(new FastPlace());
-        modules.add(new ESP());
-        modules.add(new OldAnimations());
-        modules.add(new SwingEdit());
-        modules.add(new BurrowESP());
-        modules.add(new DeathEffects());
-        modules.add(new hoodjusticeSpeech());
-        modules.add(new Selftrap());
-        modules.add(new NoHitBox());
-        modules.add(new AutoMinecart());
-        modules.add(new SelfFill());
-        modules.add(new ArrowESP());
-        modules.add(new AspectRatio());
+        this.modules.add(new ClickGui());
+        this.modules.add(new FontMod());
+        this.modules.add(new ExtraTab());
+        this.modules.add(new HUD());
+        this.modules.add(new BurrowESP());
+        this.modules.add(new InstantSpeed());
+        this.modules.add(new ChestSwap());
+        this.modules.add(new HoleESP2());
+        this.modules.add(new HoleESP());
+        this.modules.add(new Skeleton());
+        this.modules.add(new Wireframe());
+        this.modules.add(new Replenish());
+        this.modules.add(new SmallShield());
+        this.modules.add(new Trajectories());
+        this.modules.add(new FakePlayer());
+        this.modules.add(new TpsSync());
+        this.modules.add(new MultiTask());
+        this.modules.add(new MCP());
+        this.modules.add(new Background());
+        this.modules.add(new LogoutSpots());
+        this.modules.add(new LiquidInteract());
+        this.modules.add(new Speedmine());
+        this.modules.add(new ReverseStep());
+        this.modules.add(new NoVoid());
+        this.modules.add(new NoHandShake());
+        this.modules.add(new BuildHeight());
+        this.modules.add(new ChatModifier());
+        this.modules.add(new MCF());
+        this.modules.add(new PearlNotify());
+        this.modules.add(new AutoGG());
+        this.modules.add(new ToolTips());
+        this.modules.add(new Tracker());
+        this.modules.add(new PopCounter());
+        this.modules.add(new Surround());
+        this.modules.add(new AutoCrystal());
+        this.modules.add(new AutoWeb());
+        this.modules.add(new Killaura());
+        this.modules.add(new Criticals());
+        this.modules.add(new HoleFiller());
+        this.modules.add(new FastPlace());
+        this.modules.add(new ESP());
+        this.modules.add(new NoHitBox());
+        this.modules.add(new SelfFill());
     }
 
     public Module getModuleByName(String name) {
-        for (Module module : modules) {
+        for (Module module : this.modules) {
             if (!module.getName().equalsIgnoreCase(name)) continue;
             return module;
         }
@@ -110,7 +91,7 @@ public class ModuleManager
     }
 
     public <T extends Module> T getModuleByClass(Class<T> clazz) {
-        for (Module module : modules) {
+        for (Module module : this.modules) {
             if (!clazz.isInstance(module)) continue;
             return (T) module;
         }
@@ -156,7 +137,7 @@ public class ModuleManager
     }
 
     public Module getModuleByDisplayName(String displayName) {
-        for (Module module : modules) {
+        for (Module module : this.modules) {
             if (!module.getDisplayName().equalsIgnoreCase(displayName)) continue;
             return module;
         }
@@ -165,7 +146,7 @@ public class ModuleManager
 
     public ArrayList<Module> getEnabledModules() {
         ArrayList<Module> enabledModules = new ArrayList<Module>();
-        for (Module module : modules) {
+        for (Module module : this.modules) {
             if (!module.isEnabled()) continue;
             enabledModules.add(module);
         }
@@ -174,7 +155,7 @@ public class ModuleManager
 
     public ArrayList<String> getEnabledModulesName() {
         ArrayList<String> enabledModules = new ArrayList<String>();
-        for (Module module : modules) {
+        for (Module module : this.modules) {
             if (!module.isEnabled() || !module.isDrawn()) continue;
             enabledModules.add(module.getFullArrayString());
         }
@@ -183,7 +164,7 @@ public class ModuleManager
 
     public ArrayList<Module> getModulesByCategory(Module.Category category) {
         ArrayList<Module> modulesCategory = new ArrayList<Module>();
-        modules.forEach(module -> {
+        this.modules.forEach(module -> {
             if (module.getCategory() == category) {
                 modulesCategory.add(module);
             }
@@ -196,24 +177,24 @@ public class ModuleManager
     }
 
     public void onLoad() {
-        modules.stream().filter(Module::listening).forEach(((EventBus) MinecraftForge.EVENT_BUS)::register);
-        modules.forEach(Module::onLoad);
+        this.modules.stream().filter(Module::listening).forEach(((EventBus) MinecraftForge.EVENT_BUS)::register);
+        this.modules.forEach(Module::onLoad);
     }
 
     public void onUpdate() {
-        modules.stream().filter(Feature::isEnabled).forEach(Module::onUpdate);
+        this.modules.stream().filter(Feature::isEnabled).forEach(Module::onUpdate);
     }
 
     public void onTick() {
-        modules.stream().filter(Feature::isEnabled).forEach(Module::onTick);
+        this.modules.stream().filter(Feature::isEnabled).forEach(Module::onTick);
     }
 
     public void onRender2D(Render2DEvent event) {
-        modules.stream().filter(Feature::isEnabled).forEach(module -> module.onRender2D(event));
+        this.modules.stream().filter(Feature::isEnabled).forEach(module -> module.onRender2D(event));
     }
 
     public void onRender3D(Render3DEvent event) {
-        modules.stream().filter(Feature::isEnabled).forEach(module -> module.onRender3D(event));
+        this.modules.stream().filter(Feature::isEnabled).forEach(module -> module.onRender3D(event));
     }
 
     public void sortModules(boolean reverse) {
@@ -226,20 +207,20 @@ public class ModuleManager
     }
 
     public void onLogout() {
-        modules.forEach(Module::onLogout);
+        this.modules.forEach(Module::onLogout);
     }
 
     public void onLogin() {
-        modules.forEach(Module::onLogin);
+        this.modules.forEach(Module::onLogin);
     }
 
     public void onUnload() {
-        modules.forEach(MinecraftForge.EVENT_BUS::unregister);
-        modules.forEach(Module::onUnload);
+        this.modules.forEach(MinecraftForge.EVENT_BUS::unregister);
+        this.modules.forEach(Module::onUnload);
     }
 
     public void onUnloadPost() {
-        for (Module module : modules) {
+        for (Module module : this.modules) {
             module.enabled.setValue(false);
         }
     }
@@ -248,14 +229,14 @@ public class ModuleManager
         if (eventKey == 0 || !Keyboard.getEventKeyState() || ModuleManager.mc.currentScreen instanceof OyVeyGui) {
             return;
         }
-        modules.forEach(module -> {
+        this.modules.forEach(module -> {
             if (module.getBind().getKey() == eventKey) {
                 module.toggle();
             }
         });
     }
 
-    public class Animation
+    private class Animation
             extends Thread {
         public Module module;
         public float offset;

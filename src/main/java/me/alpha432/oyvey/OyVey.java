@@ -8,12 +8,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 
-@Mod(modid = "somahax", name = "somahax.sex", version = "0.8.5")
+@Mod(modid = "somahax.new", name = "somahax.new", version = "1.2.4")
 public class OyVey {
-    public static final String MODID = "somahax";
-    public static final String MODNAME = "somahax.sex";
-    public static final String MODVER = "0.8.5";
-    public static final Logger LOGGER = LogManager.getLogger("somahax.sex");
+    public static final String MODID = "somahax.new";
+    public static final String MODNAME = "somahax.new";
+    public static final String MODVER = "1.2.4";
+    public static final String GITHASH = "+1.c0b1f2d772f3";
+    public static final Logger LOGGER = LogManager.getLogger("somahax.gg");
     public static CommandManager commandManager;
     public static FriendManager friendManager;
     public static ModuleManager moduleManager;
@@ -33,6 +34,7 @@ public class OyVey {
     public static TextManager textManager;
     @Mod.Instance
     public static OyVey INSTANCE;
+    public static ChatManager chatManager;
     private static boolean unloaded;
 
     static {
@@ -40,7 +42,7 @@ public class OyVey {
     }
 
     public static void load() {
-        LOGGER.info("\n\nLoading somahax by RetardMatter and CrystalRetardium! Continued by hoodjustice aka getrekt21 :D");
+        LOGGER.info("\n\nLoading somahax");
         unloaded = false;
         if (reloadManager != null) {
             reloadManager.unload();
@@ -50,6 +52,9 @@ public class OyVey {
         commandManager = new CommandManager();
         friendManager = new FriendManager();
         moduleManager = new ModuleManager();
+        chatManager = new ChatManager();
+        textManager = new TextManager();
+        commandManager = new CommandManager();
         rotationManager = new RotationManager();
         packetManager = new PacketManager();
         eventManager = new EventManager();
@@ -74,7 +79,7 @@ public class OyVey {
     }
 
     public static void unload(boolean unload) {
-        LOGGER.info("\n\nUnloading somahax by RetardMatter and CrystalRetardium");
+        LOGGER.info("\n\nUnloading somahax");
         if (unload) {
             reloadManager = new ReloadManager();
             reloadManager.init(commandManager != null ? commandManager.getPrefix() : ".");
@@ -107,7 +112,7 @@ public class OyVey {
         if (!unloaded) {
             eventManager.onUnload();
             moduleManager.onUnload();
-            configManager.saveConfig(OyVey.configManager.config.replaceFirst("oyvey/", ""));
+            configManager.saveConfig(OyVey.configManager.config.replaceFirst("somahax/", ""));
             moduleManager.onUnloadPost();
             unloaded = true;
         }
@@ -115,14 +120,16 @@ public class OyVey {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        LOGGER.info("Can i get ratted by downloading the src? -Somsoma1");
-
-        LOGGER.info("Can i rat a homeless mfer thru a line of code? -hoodjustice-fbgballout");
+        LOGGER.info("Can i get ratted from downloading src on github? - somsoma1");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        Display.setTitle("somahax");
+        String title = MODID + " | " + MODVER + GITHASH + " | " +
+                net.minecraft.client.Minecraft.getMinecraft().getVersion() + " | " +
+                net.minecraft.client.Minecraft.getMinecraft().getSession().getUsername();
+        org.lwjgl.opengl.Display.setTitle(title);
         OyVey.load();
     }
 }
+

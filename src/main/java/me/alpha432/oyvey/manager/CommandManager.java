@@ -11,7 +11,7 @@ import java.util.LinkedList;
 public class CommandManager
         extends Feature {
     private final ArrayList<Command> commands = new ArrayList();
-    private String clientMessage = "<somahax.sex>";
+    private String clientMessage = "<OyVey>";
     private String prefix = ".";
 
     public CommandManager() {
@@ -56,7 +56,7 @@ public class CommandManager
             c.execute(parts);
             return;
         }
-        Command.sendMessage(ChatFormatting.GRAY + "BRO thats not a command you"+ChatFormatting.RED+"stupid nigger.."+ChatFormatting.GRAY+" type help for a list of commands");
+        Command.sendMessage(ChatFormatting.GRAY + "Command not found, type 'help' for the commands list.");
     }
 
     public Command getCommandByName(String name) {

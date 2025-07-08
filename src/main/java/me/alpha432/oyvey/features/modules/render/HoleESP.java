@@ -41,7 +41,7 @@ public class HoleESP
     private final Setting<Integer> safecAlpha = this.register(new Setting<Object>("OL-BedrockAlpha", Integer.valueOf(255), Integer.valueOf(0), Integer.valueOf(255), v -> this.outline.getValue()));
 
     public HoleESP() {
-        super("HoleESP", "Shows safe spots.", Module.Category.RENDER, false, false, false);
+        super("HoleESP", "NormalOne", Module.Category.RENDER, false, false, false);
         this.setInstance();
     }
 
@@ -78,4 +78,3 @@ public class HoleESP
         }
     }
 }
-

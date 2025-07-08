@@ -123,4 +123,3 @@ public class OyVeyGui
         this.components.forEach(component -> component.onKeyTyped(typedChar, keyCode));
     }
 }
-
